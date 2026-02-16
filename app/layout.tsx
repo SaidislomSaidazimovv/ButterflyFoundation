@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: 'The Butterfly Foundation | Emotional Sustainability',
   description:
     'Building the global infrastructure for emotional stability and regeneration in the age of accelerating intelligence.',
+    icons: {
+    icon: "/ONETOPIA_Logo_Symbol_Black.png",
+  },
 }
 
 export const viewport: Viewport = {
