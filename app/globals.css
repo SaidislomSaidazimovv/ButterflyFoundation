@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 40 10% 98%;
+    --foreground: 220 18% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 18% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 18% 12%;
+    --primary: 220 18% 12%;
+    --primary-foreground: 40 10% 98%;
+    --secondary: 40 8% 95%;
+    --secondary-foreground: 220 18% 12%;
+    --muted: 40 6% 94%;
+    --muted-foreground: 220 8% 50%;
+    --accent: 174 52% 36%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 12% 91%;
+    --input: 220 12% 91%;
+    --ring: 174 52% 36%;
+    --chart-1: 174 52% 36%;
+    --chart-2: 174 40% 50%;
+    --chart-3: 220 18% 30%;
+    --chart-4: 174 30% 60%;
+    --chart-5: 220 10% 60%;
+    --radius: 0.125rem;
+    --butterfly-teal: 174 52% 36%;
+    --butterfly-teal-light: 174 30% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* ——— Keyframes ——— */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1.5deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+@keyframes wing-left {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.65); }
+}
+
+@keyframes wing-right {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.65); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.25; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes draw-line {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes subtle-breathe {
+  0%, 100% { opacity: 0.06; }
+  50% { opacity: 0.12; }
+}
+
+@keyframes grid-reveal {
+  from { opacity: 0; }
+  to { opacity: 0.04; }
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes expand-width {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ——— Animation Utilities ——— */
+.animate-float { animation: float 8s ease-in-out infinite; }
+.animate-wing-left { animation: wing-left 3.5s ease-in-out infinite; transform-origin: right center; }
+.animate-wing-right { animation: wing-right 3.5s ease-in-out infinite; transform-origin: left center; }
+.animate-pulse-ring { animation: pulse-ring 3s ease-out infinite; }
+.animate-draw-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw-line 2.5s ease-out forwards; }
+.animate-subtle-breathe { animation: subtle-breathe 6s ease-in-out infinite; }
+.animate-grid-reveal { animation: grid-reveal 2s ease-out forwards; }
+.animate-count-up { animation: count-up 0.6s ease-out forwards; }
+.animate-slide-left { animation: slide-in-left 0.7s ease-out forwards; }
+.animate-slide-right { animation: slide-in-right 0.7s ease-out forwards; }
+.animate-expand-width { animation: expand-width 1.2s ease-out forwards; }
+
+/* ——— Architectural grid background ——— */
+.arch-grid {
+  background-image:
+    linear-gradient(to right, hsl(220 12% 91% / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(220 12% 91% / 0.3) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.arch-grid-dense {
+  background-image:
+    linear-gradient(to right, hsl(220 12% 91% / 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(220 12% 91% / 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ——— Card hover lift ——— */
+.card-lift {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -12px rgba(0,0,0,0.08), 0 4px 20px -4px rgba(0,0,0,0.04);
+}
+
+/* ——— Line reveal ——— */
+.line-reveal {
+  position: relative;
+}
+.line-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: hsl(var(--butterfly-teal));
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.line-reveal:hover::after {
+  width: 100%;
+}
