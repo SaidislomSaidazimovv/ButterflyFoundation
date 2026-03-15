@@ -26,6 +26,10 @@ export function Footer() {
               Geneva, Switzerland
             </p>
           </div>
+
+          <p className="text-[10px] text-muted-foreground/30">
+            &copy; {new Date().getFullYear()} The Butterfly Foundation. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

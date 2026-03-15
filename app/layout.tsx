@@ -14,11 +14,36 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://thebutterflyfoundation.org'),
   title: 'The Butterfly Foundation | Emotional Sustainability',
   description:
     'Building the global infrastructure for emotional stability and regeneration in the age of accelerating intelligence.',
-    icons: {
-    icon: "/ONETOPIA_Logo_Symbol_Black.png",
+  icons: {
+    icon: '/ONETOPIA_Logo_Symbol_Black.png',
+  },
+  openGraph: {
+    title: 'The Butterfly Foundation | Emotional Sustainability',
+    description:
+      'Building the global infrastructure for emotional stability and regeneration in the age of accelerating intelligence.',
+    url: 'https://thebutterflyfoundation.org',
+    siteName: 'The Butterfly Foundation',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: '/images/alpine-lake.jpg',
+        width: 1400,
+        height: 933,
+        alt: 'The Butterfly Foundation — Geneva, Switzerland',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Butterfly Foundation | Emotional Sustainability',
+    description:
+      'Building the global infrastructure for emotional stability and regeneration in the age of accelerating intelligence.',
+    images: ['/images/alpine-lake.jpg'],
   },
 }
 

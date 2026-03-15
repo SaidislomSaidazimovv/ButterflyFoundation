@@ -1,5 +1,3 @@
-"use client"
-
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/sections/hero"
 import { MissingInfrastructureSection } from "@/components/sections/missing-infrastructure"
@@ -13,6 +11,7 @@ import { AccordSection } from "@/components/sections/accord"
 import { IndexSection } from "@/components/sections/index-section"
 import { ContactSection } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
+import { PhotoBreak } from "@/components/photo-break"
 
 export default function Page() {
   return (
@@ -23,11 +22,26 @@ export default function Page() {
         <MissingInfrastructureSection />
         <WhatWeBuildSection />
         <SymbolToSystemSection />
+        <PhotoBreak
+          src="/images/calm-water.jpg"
+          alt="Calm turquoise waters at golden hour"
+          caption="Stability begins within"
+        />
         <FoundingPartnersSection />
         <FrameworkSection />
+        <PhotoBreak
+          src="/images/nature-light.jpg"
+          alt="Sunlight filtering through a forest path"
+          caption="From cocoon to emergence"
+        />
         <ButterflyMonthSection />
         <InstitutionalModelSection />
         <AccordSection />
+        <PhotoBreak
+          src="/images/monarch.jpg"
+          alt="Blue butterflies in an enchanted forest"
+          caption="The butterfly effect at scale"
+        />
         <IndexSection />
         <ContactSection />
       </main>

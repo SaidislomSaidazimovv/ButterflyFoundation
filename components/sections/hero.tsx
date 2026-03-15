@@ -1,102 +1,34 @@
-"use client";
+"use client"
 
-import { ButterflySymbol } from "@/components/butterfly-symbol";
-import { useEffect, useState } from "react";
+import Image from "next/image"
+import { ButterflySymbol } from "@/components/butterfly-symbol"
+import { useEffect, useState } from "react"
 
 export function HeroSection() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 arch-grid animate-grid-reveal" />
-
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <svg viewBox="0 0 800 800" className="h-[800px] w-[800px]" fill="none">
-          <circle
-            cx="400"
-            cy="400"
-            r="380"
-            stroke="hsl(174,52%,36%)"
-            strokeWidth="0.4"
-            opacity="0.06"
-          />
-          <circle
-            cx="400"
-            cy="400"
-            r="300"
-            stroke="hsl(174,52%,36%)"
-            strokeWidth="0.3"
-            opacity="0.08"
-          />
-          <circle
-            cx="400"
-            cy="400"
-            r="220"
-            stroke="hsl(174,52%,36%)"
-            strokeWidth="0.3"
-            opacity="0.1"
-          />
-          <circle
-            cx="400"
-            cy="400"
-            r="140"
-            stroke="hsl(174,52%,36%)"
-            strokeWidth="0.2"
-            opacity="0.12"
-          />
-          <line
-            x1="400"
-            y1="20"
-            x2="400"
-            y2="780"
-            stroke="hsl(220,12%,91%)"
-            strokeWidth="0.5"
-            opacity="0.3"
-          />
-          <line
-            x1="20"
-            y1="400"
-            x2="780"
-            y2="400"
-            stroke="hsl(220,12%,91%)"
-            strokeWidth="0.5"
-            opacity="0.3"
-          />
-          <line
-            x1="120"
-            y1="120"
-            x2="680"
-            y2="680"
-            stroke="hsl(220,12%,91%)"
-            strokeWidth="0.3"
-            opacity="0.15"
-          />
-          <line
-            x1="680"
-            y1="120"
-            x2="120"
-            y2="680"
-            stroke="hsl(220,12%,91%)"
-            strokeWidth="0.3"
-            opacity="0.15"
-          />
-        </svg>
-      </div>
-
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="h-48 w-48 rounded-full border border-butterfly-teal/15 animate-pulse-ring" />
-      </div>
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div
-          className="h-48 w-48 rounded-full border border-butterfly-teal/10 animate-pulse-ring"
-          style={{ animationDelay: "1.5s" }}
+      {/* ——— Full-bleed background image (covers nav + hero) ——— */}
+      <div className="absolute inset-0 -top-[var(--nav-height,80px)]">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+          quality={90}
         />
+        {/* White overlay to preserve light/cream aesthetic */}
+        <div className="absolute inset-0 bg-[hsl(var(--background))]/[0.62]" />
       </div>
 
+      {/* Side labels */}
       <div
         className={`pointer-events-none absolute left-8 top-1/2 -translate-y-1/2 hidden lg:block transition-all duration-1000 delay-[1200ms] ${
           mounted ? "opacity-100" : "opacity-0"
@@ -123,7 +55,9 @@ export function HeroSection() {
         </p>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center px-6 text-center">
+      {/* ——— Content ——— */}
+      <div className="relative z-10 flex flex-col items-center px-6 pt-24 pb-28 text-center">
+        {/* Butterfly symbol */}
         <div
           className={`transition-all duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
             mounted ? "opacity-100 scale-100" : "opacity-0 scale-75"
@@ -135,7 +69,7 @@ export function HeroSection() {
         </div>
 
         <h1
-          className={`mt-14 font-serif text-5xl font-light tracking-[-0.02em] text-foreground md:text-7xl lg:text-[5.5rem] transition-all duration-[1200ms] delay-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`mt-14 font-serif text-5xl font-light tracking-[-0.03em] text-foreground md:text-7xl lg:text-[5.5rem] transition-all duration-[1200ms] delay-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
             mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -181,21 +115,22 @@ export function HeroSection() {
         </a>
       </div>
 
+      {/* Scroll indicator */}
       <div
-        className={`absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 transition-all duration-1000 ${
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 transition-all duration-1000 ${
           mounted ? "opacity-100" : "opacity-0"
         }`}
       >
         <span className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground/60">
           Scroll
         </span>
-
         <div className="relative h-10 w-6 rounded-full border border-butterfly-teal/40">
           <span className="absolute left-1/2 top-2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-butterfly-teal animate-scroll-dot" />
         </div>
       </div>
 
+      {/* Bottom border */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
     </section>
-  );
+  )
 }

@@ -49,6 +49,13 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[hsl(var(--butterfly-teal))];
   }
 }
 
@@ -61,6 +68,10 @@
 
 .animate-scroll-dot {
   animation: scrollDot 1.6s ease-in-out infinite;
+}
+
+@keyframes drawCircle {
+  to { stroke-dashoffset: 0; }
 }
 
 /* ——— Keyframes ——— */

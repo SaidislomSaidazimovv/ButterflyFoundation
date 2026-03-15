@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { ButterflySymbol } from "@/components/butterfly-symbol"
 
 const navLinks = [
   { label: "Framework", href: "#framework" },
@@ -34,16 +33,14 @@ export function Navigation() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
         {/* Logo */}
         <a href="#" className="group flex items-center gap-3 text-foreground transition-opacity hover:opacity-80">
-          {/* <ButterflySymbol className="h-7 w-7" animated={false} /> */}
-
           <Image
-  src="/ONETOPIA_Logo_Symbol_Black.png"
-  alt="The Butterfly Foundation Logo"
-  width={28}
-  height={28}
-  className="h-7 w-7 object-contain"
-/>
-
+            src="/ONETOPIA_Logo_Symbol_Black.png"
+            alt="The Butterfly Foundation Logo"
+            width={28}
+            height={28}
+            priority
+            className="h-7 w-7 object-contain"
+          />
           <span className="font-serif text-[15px] tracking-wide">The Butterfly Foundation</span>
         </a>
 
@@ -53,7 +50,7 @@ export function Navigation() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="line-reveal relative pb-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-300 hover:text-foreground"
+                className="line-reveal relative py-2 pb-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-300 hover:text-foreground"
               >
                 {link.label}
               </a>
@@ -63,7 +60,7 @@ export function Navigation() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden flex flex-col gap-1.5 p-2 text-foreground"
+          className="lg:hidden flex flex-col gap-1.5 p-3 -mr-3 text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
         >
@@ -80,12 +77,12 @@ export function Navigation() {
         }`}
       >
         <div className="bg-background/95 backdrop-blur-xl px-6 py-8">
-          <ul className="flex flex-col gap-6">
+          <ul className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-[12px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-3 px-2 text-[12px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}

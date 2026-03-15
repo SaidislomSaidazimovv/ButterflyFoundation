@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { ButterflySymbol } from "@/components/butterfly-symbol"
 import { useState } from "react"
@@ -11,13 +12,30 @@ export function ContactSection() {
     email: "",
     message: "",
   })
+  const [submitted, setSubmitted] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+  }
+
   return (
     <section id="contact" className="relative bg-foreground py-32 md:py-48 overflow-hidden">
+      {/* Background photo overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/calm-water.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-[0.06]"
+          sizes="100vw"
+        />
+      </div>
+
       {/* Grid overlay */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.02]"
         style={{
@@ -85,56 +103,72 @@ export function ContactSection() {
               </p>
             </ScrollReveal>
 
-            <form className="mt-10 flex flex-col gap-8" onSubmit={(e) => e.preventDefault()}>
-              {[
-                { name: "name", label: "Name", type: "text", placeholder: "Name" },
-                { name: "organization", label: "Organization", type: "text", placeholder: "Organization" },
-                { name: "email", label: "Email", type: "email", placeholder: "Email" },
-              ].map((field, i) => (
-                <ScrollReveal key={field.name} delay={200 + i * 80}>
+            {submitted ? (
+              <ScrollReveal>
+                <div className="mt-10 border border-butterfly-teal/30 p-10">
+                  <div className="flex items-center gap-4">
+                    <div className="h-3 w-3 rotate-45 bg-butterfly-teal" />
+                    <p className="font-serif text-xl text-primary-foreground">Inquiry received.</p>
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-primary-foreground/50">
+                    Thank you for your interest. Our team will review your inquiry and respond within 48 hours.
+                  </p>
+                </div>
+              </ScrollReveal>
+            ) : (
+              <form className="mt-10 flex flex-col gap-8" onSubmit={handleSubmit}>
+                {[
+                  { name: "name", label: "Name", type: "text", placeholder: "Name" },
+                  { name: "organization", label: "Organization", type: "text", placeholder: "Organization" },
+                  { name: "email", label: "Email", type: "email", placeholder: "Email" },
+                ].map((field, i) => (
+                  <ScrollReveal key={field.name} delay={200 + i * 80}>
+                    <div className="group relative">
+                      <label htmlFor={`contact-${field.name}`} className="sr-only">{field.label}</label>
+                      <input
+                        id={`contact-${field.name}`}
+                        name={field.name}
+                        type={field.type}
+                        required
+                        placeholder={field.placeholder}
+                        value={formState[field.name as keyof typeof formState]}
+                        onChange={handleChange}
+                        className="w-full border-b border-primary-foreground/15 bg-transparent pb-4 text-sm text-primary-foreground placeholder:text-primary-foreground/25 focus:border-butterfly-teal focus:outline-none transition-colors duration-400"
+                      />
+                      {/* Animated underline */}
+                      <div className="absolute bottom-0 left-0 h-px w-0 bg-butterfly-teal transition-all duration-500 group-focus-within:w-full" />
+                    </div>
+                  </ScrollReveal>
+                ))}
+
+                <ScrollReveal delay={450}>
                   <div className="group relative">
-                    <label htmlFor={`contact-${field.name}`} className="sr-only">{field.label}</label>
-                    <input
-                      id={`contact-${field.name}`}
-                      name={field.name}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      value={formState[field.name as keyof typeof formState]}
+                    <label htmlFor="contact-message" className="sr-only">Message</label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      rows={4}
+                      required
+                      placeholder="Your inquiry"
+                      value={formState.message}
                       onChange={handleChange}
-                      className="w-full border-b border-primary-foreground/15 bg-transparent pb-4 text-sm text-primary-foreground placeholder:text-primary-foreground/25 focus:border-butterfly-teal focus:outline-none transition-colors duration-400"
+                      className="w-full resize-none border-b border-primary-foreground/15 bg-transparent pb-4 text-sm text-primary-foreground placeholder:text-primary-foreground/25 focus:border-butterfly-teal focus:outline-none transition-colors duration-400"
                     />
-                    {/* Animated underline */}
                     <div className="absolute bottom-0 left-0 h-px w-0 bg-butterfly-teal transition-all duration-500 group-focus-within:w-full" />
                   </div>
                 </ScrollReveal>
-              ))}
 
-              <ScrollReveal delay={450}>
-                <div className="group relative">
-                  <label htmlFor="contact-message" className="sr-only">Message</label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows={4}
-                    placeholder="Your inquiry"
-                    value={formState.message}
-                    onChange={handleChange}
-                    className="w-full resize-none border-b border-primary-foreground/15 bg-transparent pb-4 text-sm text-primary-foreground placeholder:text-primary-foreground/25 focus:border-butterfly-teal focus:outline-none transition-colors duration-400"
-                  />
-                  <div className="absolute bottom-0 left-0 h-px w-0 bg-butterfly-teal transition-all duration-500 group-focus-within:w-full" />
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={550}>
-                <button
-                  type="submit"
-                  className="group mt-4 relative self-start overflow-hidden border border-primary-foreground/20 px-12 py-4 text-[11px] font-medium uppercase tracking-[0.3em] text-primary-foreground transition-all duration-500"
-                >
-                  <span className="absolute inset-0 bg-butterfly-teal translate-y-full transition-transform duration-500 group-hover:translate-y-0" />
-                  <span className="relative z-10">Submit Inquiry</span>
-                </button>
-              </ScrollReveal>
-            </form>
+                <ScrollReveal delay={550}>
+                  <button
+                    type="submit"
+                    className="group mt-4 relative self-start overflow-hidden border border-primary-foreground/20 px-12 py-4 text-[11px] font-medium uppercase tracking-[0.3em] text-primary-foreground transition-all duration-500"
+                  >
+                    <span className="absolute inset-0 bg-butterfly-teal translate-y-full transition-transform duration-500 group-hover:translate-y-0" />
+                    <span className="relative z-10">Submit Inquiry</span>
+                  </button>
+                </ScrollReveal>
+              </form>
+            )}
           </div>
         </div>
       </div>
