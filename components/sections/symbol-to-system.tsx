@@ -13,7 +13,7 @@ const stack = [
 
 export function SymbolToSystemSection() {
   return (
-    <section className="relative py-32 md:py-48 overflow-hidden">
+    <section className="relative py-32 md:py-44 overflow-hidden">
       <VerticalLabel text="Section 03" className="absolute left-6 top-32 hidden lg:block" />
 
       <div className="mx-auto max-w-5xl px-6 lg:px-16">

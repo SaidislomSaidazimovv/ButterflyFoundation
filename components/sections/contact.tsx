@@ -24,7 +24,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="relative bg-foreground py-32 md:py-48 overflow-hidden">
+    <section id="contact" className="relative bg-foreground py-32 md:py-44 overflow-hidden">
       {/* Background photo overlay */}
       <div className="absolute inset-0">
         <Image

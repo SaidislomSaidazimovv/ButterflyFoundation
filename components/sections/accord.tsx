@@ -7,7 +7,7 @@ const alignments = ["Governments", "Corporations", "Institutions"]
 
 export function AccordSection() {
   return (
-    <section id="accord" className="relative bg-[hsl(var(--muted))] py-32 md:py-44 overflow-hidden">
+    <section id="accord" className="relative py-32 md:py-44 overflow-hidden">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-16">
         <ScrollReveal>
           <div className="flex items-center gap-4">

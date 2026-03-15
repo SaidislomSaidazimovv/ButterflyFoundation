@@ -69,6 +69,8 @@ export function InstitutionalModelSection() {
           </div>
         </ScrollReveal>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
     </section>
   )
 }

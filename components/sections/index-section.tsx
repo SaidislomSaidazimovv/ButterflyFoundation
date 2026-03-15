@@ -11,7 +11,7 @@ const metrics = [
 
 export function IndexSection() {
   return (
-    <section id="index" className="relative py-32 md:py-44 overflow-hidden">
+    <section id="index" className="relative bg-[hsl(var(--muted))] py-32 md:py-44 overflow-hidden">
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-16">
         <ScrollReveal>
           <div className="flex items-center gap-4">
