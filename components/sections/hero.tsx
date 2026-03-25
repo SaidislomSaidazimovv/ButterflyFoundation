@@ -16,7 +16,7 @@ export function HeroSection() {
       {/* ——— Full-bleed background image (covers nav + hero) ——— */}
       <div className="absolute inset-0 -top-[var(--nav-height,80px)]">
         <Image
-          src="/images/hero-bg.jpg"
+          src="/images/photo_2026-03-25_16-45-34.jpg"
           alt=""
           fill
           priority
@@ -25,7 +25,7 @@ export function HeroSection() {
           quality={90}
         />
         {/* White overlay to preserve light/cream aesthetic */}
-        <div className="absolute inset-0 bg-[hsl(var(--background))]/[0.62]" />
+        <div className="absolute inset-0 bg-[hsl(var(--background))]/[0.70]" />
       </div>
 
       {/* Side labels */}
